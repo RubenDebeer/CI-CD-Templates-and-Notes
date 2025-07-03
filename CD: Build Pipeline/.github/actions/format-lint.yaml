@@ -1,0 +1,13 @@
+name: "Format and Lint Code"
+description: "Runs Prettier to check formatting and ESLint to lint code"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Format check
+      run: npm run format
+      shell: bash
+
+    - name: Lint code
+      run: npm run lint
+      shell: bash
