@@ -1,6 +1,4 @@
 name: Build the Pipeline Baby
-
-# Awe so here you will define the event that will trigger the Workflow 
 on:
   push:
     branches: [ main ]
@@ -8,29 +6,22 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build: 
+    name: Build and Test
     runs-on: ubuntu-latest
-
     steps:
-        # Step 1: Source the Code 
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-        # Step 2: Setup the Environment and Install Dependencies
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      # Abstracts Three Steps: Checkout, Setup Node.js, Install Dependencies
+      - name: Setup Workflow
+        uses: ./.github/actions/setup.yml
+      # Abstracts One step: Format and Lint Code
+      - name: Format and Lint Code
+        uses: ./.github/actions/format-lint.yaml
 
-      - name: Install dependencies
-        run: npm ci
-
-        # Step 3 Format and Link Code
-        
-        # Step 4 Compile code
-      - name: Compile code (noop)
+      - name: Compile code
         run: echo "No compile step needed"
 
-        #Step 5: Run Tests
       - name: Run tests
         run: npm test
+  # We abstract those steps into a Composite function because we might want to re-ues these steps in teh fucture 
+  # for other workflows, like the deploy workflow, where we will  have to setup the workflow, install dependencies, and run tests.
