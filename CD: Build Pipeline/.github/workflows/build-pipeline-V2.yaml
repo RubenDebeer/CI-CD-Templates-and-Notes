@@ -13,10 +13,10 @@ jobs:
 
       # Abstracts Three Steps: Checkout, Setup Node.js, Install Dependencies
       - name: Setup Workflow
-        uses: ./.github/actions/setup.yml
+        uses: ./.github/actions/setup
       # Abstracts One step: Format and Lint Code
       - name: Format and Lint Code
-        uses: ./.github/actions/format-lint.yaml
+        uses: ./.github/actions/format
 
       - name: Compile code
         run: echo "No compile step needed"

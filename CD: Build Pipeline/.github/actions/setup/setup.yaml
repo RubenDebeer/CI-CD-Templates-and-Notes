@@ -1,0 +1,12 @@
+nameL: "Workflow Setup"
+description: " A Composite action that abstracts the setup steps (source, ENV setup, Install Dependencies )"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm ci
+    - run: npm run build
