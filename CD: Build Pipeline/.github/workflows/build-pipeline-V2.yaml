@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Abstracts Three Steps: Checkout, Setup Node.js, Install Dependencies
+      # Abstracts Two Steps: Checkout, Setup Node.js
       - name: Setup Workflow
         uses: ./.github/actions/setup
+
+      - name: Install Dependencies
+        run: npm ci
         
       # Abstracts One step: Format and Lint Code
       - name: Format and Lint Code
