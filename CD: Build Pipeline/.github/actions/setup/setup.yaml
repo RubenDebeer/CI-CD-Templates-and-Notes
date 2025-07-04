@@ -9,4 +9,4 @@ runs:
       with:
         node-version: 18
     - run: npm ci
-    - run: npm run build
+      shell: bash
