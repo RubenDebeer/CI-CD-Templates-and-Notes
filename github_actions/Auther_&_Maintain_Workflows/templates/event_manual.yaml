@@ -1,0 +1,16 @@
+name: Manually Run workflow
+
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name of the person running the workflow'
+        required: true
+        default: 'Ruben De Beer'
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World 
+        run: echo "Hello, ${{ github.event.inputs.name }}! This workflow was manually triggered."
