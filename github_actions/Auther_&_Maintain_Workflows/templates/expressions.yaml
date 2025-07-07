@@ -1,0 +1,37 @@
+name: Workflow to play with expressions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  expressions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GitHub Context
+        run: |
+          echo "GitHub Context:"
+          echo "${{ toJson(github) }}"
+      - name: Print Job Context
+        run: |
+          echo "Job Context:"
+          echo "${{ toJson(job) }}"
+      - name: Print Runner Context
+        run: |
+          echo "Runner Context:"
+          echo "${{ toJson(runner) }}"
+      - name: Print Inputs
+        run: |
+          echo "Inputs:"
+          echo "${{ toJson(inputs) }}"
+      - name: Print Environment Variables
+        run: |
+          echo "Environment Variables:"
+          echo "${{ toJson(env) }}"
+      - name: Print Secrets
+        run: |
+          echo "Secrets:"
+          echo "${{ toJson(secrets) }}"

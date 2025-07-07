@@ -1,0 +1,21 @@
+name: Conditionals Workflow
+
+on: [push]
+
+jobs:
+  hello_world:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World
+        run: |
+          echo "Hello World"
+          echo "This workflow runs only on push events."
+  pull_request:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Event
+        run: |
+          echo "This workflow runs only on pull request events."
+          echo "You can use conditionals to control the execution of jobs based on the event type
