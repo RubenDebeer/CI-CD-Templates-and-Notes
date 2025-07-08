@@ -1,0 +1,17 @@
+name: Programmatically Run workflow
+
+on: 
+  repository_dispatch:
+    types: webhook
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World
+        run: |
+          echo "Hello ${{ github.event.client_payload.name }} ${{ github.event.client_payload.surname }}"
+          echo "This is a programmatically triggered workflow."
+          echo "You can use the client_payload to customize the workflow execution."
+          echo "For example, you can use the name and surname in the client_payload to personalize the output."
+          echo "You can trigger this workflow using the GitHub API or other automation tools

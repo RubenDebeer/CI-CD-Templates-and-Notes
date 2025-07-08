@@ -1,0 +1,20 @@
+name: Self Hosted Runner Example
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  self_hosted_runner:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Run a Script
+        run: |
+          echo "This job runs on a self-hosted runner."
+          echo "You can use self-hosted runners for specific tasks or environments."
+          echo "Make sure your self-hosted runner is properly configured and online."
+          echo "You can find more information about self-hosted runners in the GitHub documentation."
