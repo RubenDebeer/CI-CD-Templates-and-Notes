@@ -1,0 +1,21 @@
+name: Example of Dependent Workflows 
+
+on: [push]
+
+jobs: 
+  first_Job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello From the first job
+        run: |
+          echo "This is the first job in the workflow."
+          echo "It will trigger the second job upon completion."
+
+  second_Job:
+    runs-on: ubuntu-latest
+    needs: first_Job
+    steps:
+      - name: Hello From the second job
+        run: |
+          echo "This is the second job in the workflow."
+          echo "It depends on the completion of the first job."

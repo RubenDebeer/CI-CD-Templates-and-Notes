@@ -1,0 +1,47 @@
+name: Example workflow commands
+
+on: [push, pull_request]
+
+jobs:
+  test_job:
+  runs-on: ubuntu-latest
+  steps:
+
+    - name: Set Env Vars Commands
+      run: |
+        echo "Setting environment variables"
+        echo "MY_VAR=Hello World" >> $GITHUB_ENV
+        echo "MY_SECRET_VAR=Secret Value" >> $GITHUB_ENV
+
+    - name: Adding a System path
+      run: echo"/path/to/dir" >> $GITHUB_PATH
+
+
+    - name: Setting output Commands
+      run: |
+          echo "Setting output variables"
+          echo "my_output=Hello World" >> $GITHUB_OUTPUT
+          echo "my_secret_output=Secret Value
+    - name: Adding a Debug message
+      run: |
+        echo "This is a debug message"
+        echo "::debug::This is a debug message that will be visible in the logs."
+      
+    - name: Group log messages
+      run: |
+        echo "::group:: The Group Message"
+        echo "Message 1: This is a grouped log message."
+        echo "Message 2: You can group related logs together for better readability."
+        echo "::endgroup::"
+    
+    - name: Masking sensitive data
+      run: |
+        echo "This is a sensitive message"
+        echo "::add-mask::${{ secret.SECRET.VALUE }}"
+        echo "The sensitive message has been masked in the logs."
+
+    - name: Failing job
+      run: |
+        echo "This job is intentionally failing"
+        echo "::error::This is an error message that will cause the job to fail."
+

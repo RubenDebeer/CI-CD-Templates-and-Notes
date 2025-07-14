@@ -1,0 +1,20 @@
+name: Example of Workflow Context 
+
+on: [push, pull_request]
+
+jobs: 
+  Context_Example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Workflow Context
+        run: |
+           echo "Jello${{My_Action}}"
+           echo "Actor: ${{ MY_ACTOR }}"
+            echo "Repository: ${{ github.repository }}"
+        env:
+          MY_ACTION: ${{ github.event_name }}
+          MY _ACTOR: ${{ github.actor }}
+          MY_REPOSITORY: ${{ github.repository }}
+          MY_REF: ${{ github.ref }}
+          MY_SHA: ${{ github.sha }}
+          MY_WORKFLOW: ${{ github.workflow }}
