@@ -1,0 +1,21 @@
+name: Run on repository_dispatch
+
+on:
+  repository_dispatch: # Repository dispatch event
+    types: [custom_build] # Custom event type
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Print payload info
+        run: |
+          echo "Triggered by: ${{ github.event.client_payload.ref }}"
+          echo "Event type: ${{ github.event.action }}"
+      
+      - name: Do some work
+        run: |
+          echo "Running tasks because repository_dispatch was received!"
